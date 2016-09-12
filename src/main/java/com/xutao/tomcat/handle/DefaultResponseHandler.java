@@ -2,6 +2,7 @@ package com.xutao.tomcat.handle;
 
 import com.xutao.tomcat.Request;
 import com.xutao.tomcat.Response;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -20,7 +21,9 @@ public class DefaultResponseHandler implements ResponseHandle {
         // send response msg
         OutputStream os = request.getOs();
         try {
-            os.write(response.getHtml().getBytes());
+            if(StringUtils.isNotEmpty(response.getHtml())) {
+                os.write(response.getHtml().getBytes());
+            }
             os.flush();
             os.close();
         } catch (IOException e) {

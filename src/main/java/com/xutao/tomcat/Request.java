@@ -44,7 +44,7 @@ public class Request {
             String[] items = details[i].split(":");
             if("Host".equals(items[0])) {
                 request.setHost(items[1]);
-                request.setUri(items[1] + request.getPath());
+                request.setUri(items[1] + ":" + Server.port+ request.getPath());
             }
             if("Cookie".equals(items[0])) {
                 request.setCookie(items[1]);
